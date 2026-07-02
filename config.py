@@ -1,7 +1,7 @@
 # config.py
 import numpy as np
 
-DATA_URL = "https://raw.githubusercontent.com/quant-data-archive/forex-historical/main/XAUUSD_M15.csv"
+DATA_URL = "XAUUSD_M15_data.csv"
 SPLIT_DATE = "2025-06-01"
 
 XGB_PARAMS = {
