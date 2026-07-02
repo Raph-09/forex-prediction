@@ -301,3 +301,44 @@ The execution layer incorporates automated programmatic controls to safeguard ac
 * **The 4-Bar Post-Trade Lockout:** To mitigate the risk of continuous losing cycles or emotional revenge trading during sudden market structure flips, the execution desk enforces a mandatory **60-minute cooling-off window** after any trade exit. No new orders can be triggered until this countdown expires.
 * **Dynamic Cost-Basis Tightening:** If an open position enters its second bar ($t+2$) without achieving its profit target, the system dynamically shifts the Stop Loss to `Entry Price + 0.38 points`. This time-decay rule acts as a structural break against slow market stagnation, neutralizing downside risk before momentum completely stalls.
 * **Absolute Drawdown Circuit Breaker:** Operating continuously alongside the strategy is an independent risk tracking module. If cumulative portfolio decay approaches the institutional **$10.00\%$ maximum allowed drawdown** threshold, all open exposure is summarily liquidated, and the algorithm disables active order placement until manual clearance is granted.
+
+
+# 6. END-TO-END TECHNICAL IMPLEMENTATION
+
+## 6.1 Repository Engineering Architecture
+The technical implementation is split into two specialized segments to decouple rapid research prototyping from scalable production deployment models:
+
+* **Quantitative Research Segment (`Notebook1.ipynb`):** A self-contained Jupyter Notebook optimized for Google Colab or local Anaconda virtual environments. This segment handles raw historical data parsing, feature extraction testing, threshold tuning, dynamic risk backtesting simulations, and analytical plotting.
+* **Production Software Engineering Segment (`/src` Python Scripts):** A structured Python package configured for deployment. It abstracts feature calculations, caches model inference files, runs streaming execution loops via async scheduling, and handles API connections for paper/live brokers.
+
+---
+
+## 6.2 Data Acquisition & Schema Blueprint
+The framework consumes high-fidelity data hosted on a public repository archive containing over 5 years of consolidated M15 intervals for the gold spot contract. 
+
+* **Source Identifier:** `https://raw.githubusercontent.com/quant-data-archive/forex-historical/main/XAUUSD_M15_data.csv`
+* **Primary Structural Fields:** `Time` (Datetime index parsed in UTC), `Open`, `High`, `Low`, `Close`, `Volume`.
+
+---
+
+## 6.3 Complete Research Pipeline Code (`Notebook1.ipynb`)
+
+```python
+"""
+Strategic XAUUSD Trading Framework: Core Pipeline Engine
+Optimized for Google Colab & Local Jupyter Environments
+Filename: Notebook1.ipynb
+"""
+
+import os
+import numpy as np
+import pandas as pd
+from xgboost import XGBClassifier
+from sklearn.preprocessing import StandardScaler
+
+# ==========================================
+# PHASE 1: DATA ACQUISITION & INTEGRITY CHECK
+# ==========================================
+def load_historical_data(url):
+    print("[+] Initializing Remote Data Fetch Stream...")
+    try:
