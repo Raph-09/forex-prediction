@@ -306,39 +306,132 @@ The execution layer incorporates automated programmatic controls to safeguard ac
 # 6. END-TO-END TECHNICAL IMPLEMENTATION
 
 ## 6.1 Repository Engineering Architecture
-The technical implementation is split into two specialized segments to decouple rapid research prototyping from scalable production deployment models:
 
-* **Quantitative Research Segment (`Notebook1.ipynb`):** A self-contained Jupyter Notebook optimized for Google Colab or local Anaconda virtual environments. This segment handles raw historical data parsing, feature extraction testing, threshold tuning, dynamic risk backtesting simulations, and analytical plotting.
-* **Production Software Engineering Segment (`/src` Python Scripts):** A structured Python package configured for deployment. It abstracts feature calculations, caches model inference files, runs streaming execution loops via async scheduling, and handles API connections for paper/live brokers.
+The technical implementation is divided into two specialized components to separate rapid research prototyping from production-oriented software engineering.
+
+### Quantitative Research Segment (`Notebook1.ipynb`)
+
+A self-contained Jupyter Notebook optimized for **Google Colab** or a local **Anaconda** environment. This notebook is responsible for:
+
+- Loading and preprocessing historical market data.
+- Feature engineering and extraction.
+- Hyperparameter and threshold experimentation.
+- Backtesting and performance evaluation.
+- Data visualization and analytical plotting.
+
+The notebook can be downloaded directly from the repository.
+
+### Production Software Engineering Segment (`/src`)
+
+A structured Python package that demonstrates how the research pipeline can be organized into production-ready software components. It provides:
+
+- Modular feature engineering utilities.
+- Cached model loading and inference.
+- Streaming execution loops.
+- Demonstration-ready software architecture for deployment workflows.
 
 ---
 
 ## 6.2 Data Acquisition & Schema Blueprint
-The framework consumes high-fidelity data hosted on a public repository archive containing over 5 years of consolidated M15 intervals for the gold spot contract. 
 
-* **Source Identifier:** `https://raw.githubusercontent.com/quant-data-archive/forex-historical/main/XAUUSD_M15_data.csv`
-* **Primary Structural Fields:** `Time` (Datetime index parsed in UTC), `Open`, `High`, `Low`, `Close`, `Volume`.
+The framework consumes historical **15-minute (M15)** interval data for the **XAUUSD** (Gold Spot) forex pair. The dataset is obtained from a publicly available repository to support reproducible research and consistent backtesting.
+
+### Dataset
+
+- **Dataset Identifier:** `XAUUSD_M15_data.csv`
+
+### Required Columns
+
+- `Time` (UTC datetime index)
+- `Open`
+- `High`
+- `Low`
+- `Close`
+- `Volume`
 
 ---
 
-## 6.3 Complete Research Pipeline Code (`Notebook1.ipynb`)
+# 7. REPRODUCTION GUIDE & DEPLOYMENT
+
+## 7.1 Quantitative Research Segment (`Notebook1.ipynb`)
+
+The notebook can be executed either on **Google Colab** or within a local Python environment.
+
+### Option A: Google Colab (Recommended)
+
+1. Open Google Colab:
+   ```
+   https://colab.research.google.com
+   ```
+
+2. Upload `Notebook1.ipynb`.
+
+3. Upload `XAUUSD_M15_data.csv` to the session storage.
+
+   > **Note:** If the notebook is configured to download the dataset automatically from GitHub, manually uploading the dataset is optional.
+
+4. Install the required packages by running:
 
 ```python
-"""
-Strategic XAUUSD Trading Framework: Core Pipeline Engine
-Optimized for Google Colab & Local Jupyter Environments
-Filename: Notebook1.ipynb
-"""
+!pip install xgboost scikit-learn pandas numpy matplotlib seaborn
+```
 
-import os
-import numpy as np
-import pandas as pd
-from xgboost import XGBClassifier
-from sklearn.preprocessing import StandardScaler
+5. Execute the notebook cells sequentially.
 
-# ==========================================
-# PHASE 1: DATA ACQUISITION & INTEGRITY CHECK
-# ==========================================
-def load_historical_data(url):
-    print("[+] Initializing Remote Data Fetch Stream...")
-    try:
+---
+
+### Option B: Local Execution
+
+Create and activate a dedicated environment:
+
+```bash
+conda create -n alpha_env python=3.12
+conda activate alpha_env
+```
+
+Install the required dependencies:
+
+```bash
+pip install jupyter notebook xgboost scikit-learn pandas numpy matplotlib seaborn
+```
+
+Launch Jupyter Notebook:
+
+```bash
+jupyter notebook
+```
+
+Open `Notebook1.ipynb` and execute all cells sequentially using the local copy of `XAUUSD_M15_data.csv`.
+
+---
+
+## 7.2 Production Software Engineering Segment (`/src`)
+
+The companion software engineering package demonstrates how the quantitative research pipeline can be organized into modular production code.
+
+> **Operational Note:** This implementation is intended solely as an architectural demonstration. It does **not** connect to live broker APIs, socket streams, or order execution gateways. Instead, it simulates streaming data and reports execution events through the terminal.
+
+### Step 1: Install Dependencies
+
+From the project root directory:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 2: Run the Application
+
+```bash
+python main.py
+```
+
+### Expected Runtime Behavior
+
+When executed, the application will:
+
+- Load the trained `XGBClassifier`.
+- Read historical market data.
+- Simulate a stream of incoming market ticks.
+- Generate feature vectors.
+- Produce model predictions.
+- Print execution status and prediction events to the terminal.
