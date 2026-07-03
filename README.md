@@ -65,14 +65,14 @@ STRATEGIC EQUITY GROWTH PROFILE (2021 - 2026)
 <img width="1189" height="790" alt="equity" src="https://github.com/user-attachments/assets/808749f7-0797-417f-9093-bcd0a64d077e" />
 
 
-### i. In-Sample Phase Analysis (June 2021 – May 2025)
+### In-Sample Phase Analysis (June 2021 – May 2025)
 * **Smooth Geometric Growth:** During the initial four years of historical calibration, the equity curve displays an exceptional log-linear trajectory. This indicates a highly steady compounding effect driven by the ultra-selective **$94.5\%$ Quantile Confidence Filter**.
 * **Drawdown Suppression:** The visual profile confirms minimal "underwater" time. Flat horizontal consolidation periods are exceptionally brief, which validates the model's high win rate ($98.57\%$) and strict capital preservation under the fixed $5.5\text{-lot}$ distribution rule. Volatility during this training horizon is extremely compressed, leading to the achieved **$13.05$ Sharpe Ratio**.
 
-### ii. The Chronological Boundary Barrier (2025-06-01)
+### The Chronological Boundary Barrier (2025-06-01)
 * **Zero Leakage Verification:** The red demarcation line represents a clean break in the data pipeline. No future metrics, forward averages, or out-of-sample data points contaminated the scaling parameters or model trees prior to this date.
 
-### iii. Out-of-Sample Phase Analysis (June 2025 – June 2026)
+### Out-of-Sample Phase Analysis (June 2025 – June 2026)
 * **Real-World Generalization:** Post-split, the strategy enters entirely unseen market conditions. The equity curve continues its upward trajectory, achieving a total return of **$314.24\%$** over this final 1-year window without any parameter adjustments or re-optimization.
 * **Structural Decay & Regime Resilience:** As expected in institutional deployments, the curve exhibits slightly higher micro-volatility and more pronounced step-like pullbacks in the out-of-sample domain. This visual shift corresponds to the realistic expansion of the Maximum Drawdown to **$6.09\%$** and the normalization of the Profit Factor to **$2.02$**. 
 * **Alpha Persistence Conclusion:** Despite the increased market friction and shifting microstructures, the curve shows no signs of flattening or structural collapse. The persistent positive slope over $848$ out-of-sample trades visually confirms that the model has captured a genuine statistical edge in the XAUUSD New York session liquidity flows rather than an overfitted anomaly.
@@ -86,11 +86,11 @@ TRADE PNL DENSITY & ATTRIBUTE PROFILE
 <img width="1164" height="553" alt="trade-level-analysis" src="https://github.com/user-attachments/assets/487502ff-8f68-403a-8d03-cded6bd9cff0" />
 
 
-### i. Return Distribution & Asymmetry Skew
+### Return Distribution & Asymmetry Skew
 * **Truncated Downside Risk:** The PnL density charts confirm a highly structured risk containment framework. The left tail of the distribution (losses) terminates abruptly at a predefined boundary dictated by the **4.50-point Stop Loss** structural floor. This prevents catastrophic fat-tail risk sequences.
 * **Positive Expected Value Cluster:** The highest density of trades clusters heavily on the positive side of the ledger, establishing a clear right-shifted mode. This geometric clustering underpins the strategy's exceptional out-of-sample win rate ($85.97\%$) and proves that the machine learning engine acts as an accurate classifier rather than an indiscriminate coin flip.
 
-### ii. Time-In-Market & Duration Efficiency
+### Time-In-Market & Duration Efficiency
 * **Rapid Alpha Horizon Extraction:** The duration distribution indicates that the overwhelming majority of trades reach their decision boundaries rapidly, typically completing within **1 to 4 bars (15–60 minutes)**. This short market exposure matches the predictive lookahead horizon of the underlying engine.
 * **Time-Decay Exploitation:** By capping the duration of positions, the system avoids overnight swap fees, structural roll costs, and macro headline gaps that occur outside active session windows. It maximizes capital velocity while keeping exposure to a minimum.
 
@@ -110,7 +110,9 @@ A forensic examination of the structural transaction registry demonstrates the r
 
 ### Key Risk Desk Observations from the Execution Logs:
 ii. **The $506.00 Standard Profit Scaling:** The frequent recurring profit clips of exactly **+$506.00** prove the existence of a high-probability mathematical exit target. At $5.5\text{ lots}$, a $0.92\text{-point}$ delta on XAUUSD yields exactly $5.5 \times 100 \times 0.92 = \$506.00$. This confirms the backtest is working correctly.
+
 ii. **Time-Decay Guard Integrity (Trade #4473):** When XAUUSD failed to reach the target within the expected momentum window, the system automatically protected the account by overriding the initial targets, closing the position at a partial gain of **+$209.00** instead of letting it drift into a loss.
+
 iii. **Pessimistic Double-Breach Containment (Trade #4474):** During extreme adverse price actions, the system took a fixed **-\$2,475.00** hit. The recovery in the very next sequence (Trade #4475) demonstrates that the system does not enter revenge-trading mode; instead, it waits for the required **4-bar lockout cooldown** to elapse before deploying fresh capital.
 
 ## 3.4 Walk-Forward Optimization (WFO) Analysis
@@ -133,7 +135,9 @@ The system's forward-rolling metrics demonstrate remarkable stability, with all 
 
 ### Key Insights & Robustness Verdict:
 i. **Regime Transition Resilience (Q3-Q4 2025 Explosive Alpha):** The window spanning `2025-09-01` to `2025-12-01` captured an exceptional alpha harvest, securing a **$+123.44\%$ return** with a highly compressed drawdown of just **$4.78\%$** and a stellar Profit Factor of **$3.49$**. This indicates that the feature matrix perfectly synchronized with an expansion of volatility during the autumn New York sessions.
+
 ii. **Mandate Boundaries Protection (Q1 2026 Friction Phase):** In the final rolling horizon (`2025-12-01` to `2026-03-01`), the asset encountered a noisier structural environment. This triggered the expected behavior of statistical decay: the Profit Factor softened to $1.74$ and the Maximum Drawdown expanded to its localized peak at **$7.54\%$**. However, because of the system's strict time-decay exits and cooldown limits, the segment win rate held firmly at **$85.37\%$**, keeping total downside securely under the **$\le 10\%$ absolute risk cap**.
+
 iii. **Absence of Curve-Fitting Collapse:** A common symptom of a curve-fitted model is a spectacular failure in at least one rolling leg of a walk-forward check. The fact that *every single independent segment* posted highly profitable returns alongside high win rates ($\ge 85.37\%$) provides empirical proof that the predictive edge is mathematically stable and ready for live paper simulation environments.
 
 ## 3.5 Monte Carlo Simulation Analysis (Stress-Testing & Probability of Ruin)
@@ -203,8 +207,8 @@ During periods of market stress, geopolitical events, or heavy macroeconomic dat
 
 #### iii. Regime Neutrality Verdict
 Because both regimes comfortably meet the initial project benchmarks ($\text{Return} \ge 200\%$, $\text{Drawdown} \le 10\%$, $\text{Sharpe} \ge 2.0$), the strategy is officially classified as **Regime Agnostic**. It does not rely on a lucky trending environment to generate alpha; instead, it safely harvests returns across multiple market structures.
-## 3.7 Simulated Paper/Live Trading Verification
 
+## 3.7 Simulated Paper/Live Trading Verification
 The final stage of the validation pipeline transitions the frozen model from historical evaluation into an execution-ready **Simulated Paper/Live Trading Environment**. This phase mimics production-level market data streams and structural execution parameters, evaluating how the strategy handles real-world transactional dynamics over an extended operational sequence.
 
 LIVE ENVIRONMENT DATA & EXECUTION PIPE
@@ -259,9 +263,11 @@ The core predictive engine avoids broad-market guessing by acting as a highly se
 ## 4.3 Execution Desk Rules & Risk Architecture
 Once a signal satisfies the machine learning quantile confidence threshold, it is handled by a systematic risk management framework:
 i. **Fixed Sizing Rule:** Every trade executes with a fixed **$5.5\text{-lot}$ volume profile**, providing a robust, non-martingale capital footprint.
+
 ii. **Rigid Risk Bracket boundaries:**
     * **Take Profit (TP):** Programmatically hardcoded at **$0.92\text{ points}$**, capturing reliable intraday profit targets (netting a standard **$+\$506.00$** per trade).
     * **Stop Loss (SL):** Fixed structural floor at **$4.50\text{ points}$**, capping maximum downside risk on immediate adverse price expansions.
+    
 iii. **Dynamic Time-Decay Guard:** If a position is open into Bar 2, the system automatically tightens the stop loss to `Entry Price + 0.38 points`. This structurally outruns transactional fee drag and protects the account cost basis if momentum stalls.
 iv. **Post-Trade Lockout Window:** Following any position exit, a mandatory **4-bar ($60\text{-minute}$)** lockout window prevents immediate overtrading or emotional revenge-trading during sudden regime shifts.
 
@@ -367,7 +373,7 @@ The notebook can be executed either on **Google Colab** or within a local Python
 !pip install xgboost scikit-learn pandas numpy matplotlib seaborn
 ```
 
-5. Execute the notebook cells sequentially.
+5. Execute the notebook cells sequentially
 
 ---
 
