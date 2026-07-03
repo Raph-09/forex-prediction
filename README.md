@@ -1,6 +1,6 @@
 # 1. EXECUTIVE SUMMARY & BUSINESS LOGIC
 
-## 1.1 Project Title & Core Value Proposition
+## 1.1 Project Core Value Proposition
 ### **Strategic XAUUSD Algorithmic Trading Framework**
 **End-to-End Predictive Modeling, High-Fidelity Backtesting, and Institutional Risk Validation**
 
