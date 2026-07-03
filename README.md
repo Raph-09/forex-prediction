@@ -85,8 +85,6 @@ To verify that the system's alpha generation is mathematically sound and not a p
 TRADE PNL DENSITY & ATTRIBUTE PROFILE
 <img width="1164" height="553" alt="trade-level-analysis" src="https://github.com/user-attachments/assets/487502ff-8f68-403a-8d03-cded6bd9cff0" />
 
-<img width="258" height="186" alt="trade-table" src="https://github.com/user-attachments/assets/b68f64f9-d834-4c0e-9552-be8b055a945a" />
-
 
 ### i. Return Distribution & Asymmetry Skew
 * **Truncated Downside Risk:** The PnL density charts confirm a highly structured risk containment framework. The left tail of the distribution (losses) terminates abruptly at a predefined boundary dictated by the **4.50-point Stop Loss** structural floor. This prevents catastrophic fat-tail risk sequences.
